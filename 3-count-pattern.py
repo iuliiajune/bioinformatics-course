@@ -11,12 +11,12 @@ LenPattern = len(Pattern)
 countPattern = 0
 positionPattern = ''
 
-for i in range(LenGenom):
+for i in range(LenGenom - LenPattern + 1):
   count = i
   j = 0
   flag = 0
 
-  while j < LenPattern and count < LenGenom:
+  while j < LenPattern:
     if Genom[count] == Pattern[j]:
       j += 1
       count += 1
