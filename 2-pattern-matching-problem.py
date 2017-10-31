@@ -1,9 +1,13 @@
 # Think that Genom and Pattern are piece of DNA
 # Genom and Pattern are "good" string = consist only "A", "C", "G", "T" letters
 
-# input data
-Genom = str(input())
-Pattern = str(input())
+# 2-pattern-matching-problem
+f = open('input.txt')
+
+Genom = f.readline()
+Pattern = f.readline()
+
+f.close()
 
 LenGenom = len(Genom)
 LenPattern = len(Pattern)
@@ -24,4 +28,7 @@ for i in range(LenGenom - LenPattern + 1):
   if flag == 0 and j == LenPattern:
     positionPattern += str(i + 1) + ' '
 
-print(positionPattern)
+f = open('output.txt', 'w')
+f.write(str(positionPattern))
+
+f.close()
