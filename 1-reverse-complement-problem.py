@@ -1,26 +1,23 @@
-#print('Enter string:')
+# 1-reverse-complement-problem
+f = open('input.txt')
 
-# variable 'flag' allow to avoid a wrong input string
-flag = 1
+Pattern = f.read()
+InvPattern = ''
 
-while flag == 1:
-	flag = 0
-	Pattern = str(input())
-	InvPattern = ''
-	for s in Pattern[::-1]:
-		if s == 'A':
-			InvPattern += 'T'
-		elif s == 'C':
-			InvPattern += 'G'
-		elif s == 'G':
-			InvPattern += 'C'
-		elif s == 'T':
-			InvPattern += 'A'
-		else:
-			print('Input string should be a part DNA and consist olny "A", "C", "G", "T" letters')
-			print('Try again:')
-			flag = 1
-			break
+for s in Pattern[::-1]:
+	if s == 'A':
+		InvPattern += 'T'
+	elif s == 'C':
+		InvPattern += 'G'
+	elif s == 'G':
+		InvPattern += 'C'
+	elif s == 'T':
+		InvPattern += 'A'
 
-#print('Output:')
 print(InvPattern)
+f.close
+
+f = open('output.txt', 'w')
+f.write(str(InvPattern))
+
+f.close()
