@@ -28,9 +28,12 @@ def PatternCount(Genom, Pattern):
 
   return countPattern
 
-# input data
-Text = str(input())
-k = int(input())
+# 4-frequent-words
+f = open('input.txt')
+
+Text = str(f.readline())
+k = int(f.readline())
+f.close()
 
 LenText = len(Text)
 
@@ -51,15 +54,10 @@ for i in range(LenText - k + 1):
   if y > maxCount:
     maxCount = y
 
-#print(Patterns)
-#print(Counts)
-
 # select patterns with max count
 for i in range(len(Counts)):
   if Counts[i] == maxCount:
     FreqPattern.append(Patterns[i])
-
-#print(FreqPattern)
 
 # remote duplicates
 FinFreqPattern = []
@@ -77,4 +75,8 @@ for i in range(1, len(FreqPattern)):
     Final += FreqPattern[i] + ' '
 
 #print(FinFreqPattern)
-print(Final)
+#print(Final)
+f = open('output.txt', 'w')
+f.write(str(Final))
+
+f.close()
