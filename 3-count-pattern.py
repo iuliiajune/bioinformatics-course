@@ -1,9 +1,13 @@
 # Think that Genom and Pattern are piece of DNA
 # Genom and Pattern are "good" string = consist only "A", "C", "G", "T" letters
 
-# input data
-Genom = str(input())
-Pattern = str(input())
+# 3-count-pattern
+f = open('input.txt')
+
+Genom = f.readline()
+Pattern = f.readline()
+
+f.close()
 
 LenGenom = len(Genom)
 LenPattern = len(Pattern)
@@ -28,4 +32,7 @@ for i in range(LenGenom - LenPattern + 1):
     countPattern += 1
     #positionPattern += str(i + 1) + ' '
 
-print(countPattern)
+f = open('output.txt', 'w')
+f.write(str(countPattern))
+
+f.close()
