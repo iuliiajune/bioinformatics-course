@@ -35,7 +35,7 @@ def Score(DNA):
 def Concat_piece(piece_txt, set):
 	tmp = []
 	for h in range(t):
-		tmp.append(piece_txt[h][set[h]:set[h]+3])
+		tmp.append(piece_txt[h][set[h]:set[h]+l])
 
 	#print(tmp)
 	return tmp
