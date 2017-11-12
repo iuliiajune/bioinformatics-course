@@ -62,12 +62,13 @@ for i in range(len(Counts)):
 # remote duplicates
 FinFreqPattern = []
 #FinFreqPattern.append(FreqPattern[0])
-f = 0
-Final = FreqPattern[0] + ' '
 
-for i in range(1, len(FreqPattern)):
+Final = ''
+
+for i in range(len(FreqPattern)):
+  f = 0
   for j in range(i):
-    if FreqPattern[j] == FreqPattern[i]:
+    if FreqPattern[i] == FreqPattern[j]:
       f += 1;
 
   if f == 0:
