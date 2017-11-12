@@ -22,7 +22,7 @@ def dH(first, second):
 
 def mindH(sample, line):
 	tmp_min = l
-	for u in range(lenLine - l - 1):
+	for u in range(lenLine - l): # -1
 		tmp_dH = dH(sample, line[u:u+l])
 		if tmp_dH < tmp_min:
 			tmp_min = tmp_dH
@@ -47,10 +47,10 @@ def inDNA(w):
 			response += 'T'
 	return response
 
-
 # start a counting
 bestWord = ''
-bestDistance = t * l
+bestDistance = (t+1) * l + 1
+t_total_dist = 0
 
 # set of start of words
 word = []
@@ -65,6 +65,7 @@ countSymbol = 4 # count of Symbol in DNA
 def Recur(p):
 	global bestDistance
 	global bestWord
+	global t_total_dist
 	for j in range(p):
 		for u in range(countSymbol-1):
 			word[j] += 1
@@ -73,13 +74,16 @@ def Recur(p):
 			#print(wordDNA)
 
 			t_total_dist = TotalDistance(wordDNA, text)
+			#print("total ", t_total_dist)
 
 			if t_total_dist < bestDistance:
 				bestDistance = t_total_dist
 				bestWord = wordDNA
+				#print(bestWord)
 
 			#f.write(str(word))
 			#f.write('\n')
+			
 			Recur(j)
 		word[j] = 0
 
@@ -88,6 +92,16 @@ for i in range(l):
 		word[i] += 1
 		#f.write(str(word))
 		#f.write('\n')
+		wordDNA = inDNA(word)
+		#print(wordDNA)
+
+		t_total_dist = TotalDistance(wordDNA, text)
+		#print("total ", t_total_dist)
+
+		if t_total_dist < bestDistance:
+			bestDistance = t_total_dist
+			bestWord = wordDNA
+			#print(bestWord)
 
 		Recur(i)
 
