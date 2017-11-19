@@ -21,32 +21,6 @@ def AllLeaves(L,k):
 
 def NextVertex(a, L, k):
 	global i
-	#print("global ", i)
-	if i < L-1:
-		a[i+1] = 0
-		i += 1
-		#print(a, "level = ", i)
-		return a
-	else:
-		for y in range(L):
-			j = L - y - 1
-			if a[j] < k:
-				# if j < L-1:
-				# 	a[j+1] = 0
-				a[j] += 1
-				i = j+1
-				#print(a, "level = ", i)
-				return a
-			else:
-				#a[j] = -1
-				i = j - 1
-	i = 0
-	#print(a, "level =", i)
-	return a
-
-def NextVertex1(a, L, k):
-	global i
-	#print("global ", i)
 	if i < L:
 		i += 1
 		return a
@@ -55,7 +29,6 @@ def NextVertex1(a, L, k):
 			j = L - y - 1
 			if a[j] < k:
 				a[j] += 1
-				#i = j
 				return a
 			else:
 				a[j] = 0
@@ -63,31 +36,7 @@ def NextVertex1(a, L, k):
 	i = 0
 	return a
 
-
-
-
-def Bypass(a, L, k):
-	global i
-	#print("i in bypass", i)
-	for y in range(i):
-		j = i - y
-		if a[j] < k:
-			a[j] += 1
-			#i = j
-			#print(a, "j = ", i)
-			return a
-		else:
-			a[j] = 0
-			if a[j-1] != k:
-				a[j-1] += 1
-				#i = j
-				#print("ii", i)
-				return a 
-	i = 0
-	#print(a, "j = ", i)
-	return a
-
-def Bypass1(a,L,k):
+def Bypass(a,L,k):
 	global i
 	if i != 0:
 		for y in range(i):
@@ -141,58 +90,43 @@ def TotalDistance(v, _text):
 	return tmp_count
 
 # start a programm
-f = open('in6.txt')
+f = open('input.txt')
 
 #input data
-l = int(f.readline()) # 3
-print("l=",l)
+l = int(f.readline())
+
 text = f.readlines()
 
 t = len(text)
 lenLine = len(text[0])
+
 K = 3
 bestWord = ''
 bestDistance = (t+1) * l + 1
-print("bestDi = ",bestDistance)
 
 s = [0 for q in range(l)]
-
-# i = 3
-# for h in range(20): #((K+1)**(l+1)):
-# 	g = Bypass1(s, l, K)
-# 	print(g, " ", i)
-
 
 i = 1
 while i > 0:
 	if i < l:
 		prefix = inDNA(s[0:i])
-		#print(prefix , " pr i ", i)
 		optimisticDistance = TotalDistance(prefix, text)
-		#print(optimisticDistance)
 		if optimisticDistance > bestDistance:
-			s = Bypass1(s, l, K)
-			#print(i, "bypass i")
+			s = Bypass(s, l, K)
 		else:
-			s = NextVertex1(s, l, K)
-			#print(i, "NextVertex i")
+			s = NextVertex(s, l, K)
 	else:
-		#print("ss", s)
 		word = inDNA(s)
 		t_total = TotalDistance(word,text)
-		#print("t_total",t_total)
 		if t_total < bestDistance:
 			bestDistance = t_total
-			#print("bestDistance", bestDistance)
 			bestWord = word
-			#print("current best = ", bestWord)
-		s = NextVertex1(s, l, K)
-		#print("NextVertex")
+		s = NextVertex(s, l, K)
 
-print("print", bestWord)
+#print("print", bestWord)
 
 # write in file
-#f = open('output.txt', 'w')
-#f.write(bestWord)
+f = open('output.txt', 'w')
+f.write(bestWord)
 
-#f.close()
+f.close()
