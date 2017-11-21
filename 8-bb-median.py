@@ -47,9 +47,18 @@ def Bypass(a,L,k):
 			else:
 				i -= 1
 				a[j] = 0
-				if a[j-1] != k:
-					a[j-1] += 1
-					return a
+				# if a[j-1] != k:
+				# 	a[j-1] += 1
+				# 	return a
+				for p in range(j):
+					b = j - p - 1
+					if a[b] != k:
+						a[b] += 1
+						return a
+					else:
+						a[b] = 0
+				i = 0
+				return a
 		i = 0
 		return a
 	else:
