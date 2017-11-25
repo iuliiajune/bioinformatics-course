@@ -53,9 +53,9 @@ bestDistance = (t+1) * l + 1
 t_total_dist = 0
 
 # set of start of words
-word = []
-for y in range(l):
-	word.append(0)
+word = [0 for q in range(l)]
+
+word[0] = -1
 
 countSymbol = 4 # count of Symbol in DNA
 
