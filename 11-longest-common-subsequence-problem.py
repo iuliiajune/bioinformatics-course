@@ -5,7 +5,7 @@ f = open('input.txt')
 
 v = f.readline()
 w = f.readline()
-
+f.close()
 n = len(v) - 1
 m = len(w)
 
