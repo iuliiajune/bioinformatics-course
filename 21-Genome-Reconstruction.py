@@ -1,7 +1,7 @@
 # 21-Genome-Reconstruction
 
 # input data
-f = open('input21.txt')
+f = open('input.txt')
 k = int(f.readline())
 data = f.readlines()
 f.close()
@@ -12,8 +12,6 @@ n = len(data)
 pattern = []
 for i in range(n):
 	pattern.append(str(data[i][0:k]))
-	
-# print(pattern)
 
 v = []
 v.append(pattern[0][0:k-1])
@@ -36,8 +34,7 @@ for i in range(1,n):
 	# print("lenV = ", lenV, " len = ", len(v))
 	lenV += addV(lenV, pattern[i][0:k-1])
 	lenV += addV(lenV, pattern[i][1:k])
-
-# print(v)
+# print("v",v)
 
 m = len(v)
 s = [[0 for i in range(m)] for j in range(m)]
@@ -50,9 +47,9 @@ for i in range(n):
 				if pattern[i][1:k] == v[y]:
 					s[j][y] += 1
 
-print("\n")		
-for i in range(0, m):
-	print(s[i])
+# print("\n")		
+# for i in range(0, m):
+# 	print(s[i])
 	
 _j = 0
 _i = 0
@@ -70,9 +67,9 @@ for i in range(m):
 
 s[_i][_j] = 1
 
-print("\n")		
-for i in range(0, m):
-	print(s[i])
+# print("\n")		
+# for i in range(0, m):
+# 	print(s[i])
 	
 edge = n
 i = 0
@@ -120,28 +117,52 @@ while c < edge+1:
 	i += 1
 	j = 0
 	
-print(ver)
+# print(ver)
 
 temp = []
 m = len(ver)
 y = _j
-print(y)
-while y < len(ver[m-1]):
-	# print(ver[flag-1][y])
-	# print("i", i)
+# print(y)
 
-	if ver[m-1][y] == ver[m-1][0]: #d[i][0]:
-		t_count = 0
-		p = y
-		while p < len(ver[m-1]):
-			temp.append(ver[m-1][p])
-			p += 1
-			t_count += 1
-		if t_count < len(ver[m-1]):
-			u = 0
-			while (u < y):
-				temp.append(ver[m-1][u])
-				u += 1
-	y += 1
+if (m == 1):
+	t_count = 0
+	p = y
+	while p < len(ver[m-1]):
+		temp.append(ver[m-1][p])
+		p += 1
+		t_count += 1
+	if t_count < len(ver[m-1]):
+		u = 0
+		while (u < y):
+			temp.append(ver[m-1][u])
+			u += 1
+else:
+	while y < len(ver[m-1]):
+		# print(ver[flag-1][y])
+		# print("i", i)
 
-print(temp)
+		if ver[m-1][y] == ver[m-1][0]: #d[i][0]:
+			t_count = 0
+			p = y
+			while p < len(ver[m-1]):
+				temp.append(ver[m-1][p])
+				p += 1
+				t_count += 1
+			if t_count < len(ver[m-1]):
+				u = 0
+				while (u < y):
+					temp.append(ver[m-1][u])
+					u += 1
+		y += 1
+
+# print(temp)
+
+ans = v[temp[j]]
+for j in range(1,len(temp)):
+	ans += v[temp[j]][k-2]
+# print(ans)
+
+f = open('output.txt', 'w')
+f.write(str(ans))
+
+f.close()
