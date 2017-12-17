@@ -22,7 +22,7 @@ for i in range(n):
 # print(d)
 # print(edge)
 
-k = d[n-1][0] + 1
+k = max (n, d[n-1][0] + 1)
 
 matr = [[0 for i in range(k)] for j in range(k)]
 
