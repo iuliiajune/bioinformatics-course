@@ -19,7 +19,7 @@ for i in range(n):
 		d[i].append(int(w[i][1][y]))
 		edge += 1 
 
-k = d[n-1][0] + 1
+k = max(n, d[n-1][0] + 1)
 
 matr = [[0 for i in range(k)] for j in range(k)]
 
